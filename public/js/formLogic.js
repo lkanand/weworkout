@@ -2,7 +2,6 @@ var profilePicURL = null;
 var fileName = null;
 
 function uploadFile(file, signedRequest, url, name){
-    console.log(file);
     var xhr = new XMLHttpRequest();
     xhr.open("PUT", signedRequest);
     xhr.onreadystatechange = function() {
