@@ -14,6 +14,12 @@ function shuffleArray(arr){
 	return arr;
 }
  
+function cardImgSize() {
+	$('.userCardImg').each(function() {
+		$(this).height($(this).width());
+	})
+}
+
 function photoSlideshow() {
   if(counter > 0)
     $("#changingPic img").eq(counter - 1).removeClass("opaque");
@@ -142,7 +148,6 @@ function showCard(){
 			$(".userCardImg").attr("style","background-image: url('"+myBigArray[currentProfile].img+"')");
 		else
 			$(".userCardImg").attr("style","background-image: url('img/logoBlack.png')");
-		$('.userCardImg').height($('.userCardImg').width());
 		$('#gender').text(myBigArray[currentProfile].gender);
 		$('#location').text(myBigArray[currentProfile].primaryLocation);
 		$('#age').text(theirAge);
@@ -172,6 +177,7 @@ function showCard(){
 	    $("#activities").text(sports2);
 
 	    currentProfile++;
+		cardImgSize();
 	}
 }
 
@@ -203,7 +209,7 @@ function notifyAboutMatch(myName, theirName, myPhoto, theirPhoto) {
 		$('#matchTwoImg').attr("style", "background-image: url('img/logoBlack.png')");
 	$('#matchOneName').text(myName);
 	$('#matchTwoName').text(theirName);
-  	$('.userCardImg').height($('.userCardImg').width());
+	cardImgSize();
     var href = $('#matchLink').attr('href');
     window.location.href = href;
 }
@@ -230,8 +236,9 @@ $(document).ready(function(){
 		autoPopulateModal(userAge);
 	});
 
-	$("#kinect").on("click",function(event){
+	$(".judgement").on("click",'#kinect',function(event){
 		event.preventDefault();
+
 		$("form").first().animate({
 			left: "1200px"
 		}, function(){
@@ -245,7 +252,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#reject").on("click",function(event){
+	$(".judgement").on("click",'#reject',function(event){
 		event.preventDefault();
 		$("form").first().animate({
 			left: "-1200px"
@@ -269,11 +276,11 @@ $(document).ready(function(){
 		}
 	});
 
-	$('.userCardImg').height($('.userCardImg').width());
-	
+	cardImgSize();
+  		
 	setInterval(photoSlideshow, 9000);
 });
 
 $(window).resize(function() {
-  $('.userCardImg').height($('.userCardImg').width());
+	cardImgSize();
 });

@@ -6,7 +6,7 @@ function uploadFile(file, signedRequest, url, name){
     xhr.open("PUT", signedRequest);
     xhr.onreadystatechange = function() {
         if(xhr.readyState === 4 && xhr.status === 200) {
-            console.log("state changed!");
+            // console.log("state changed!");
             var date = new Date();
             $(".userCardImg").attr("style", "background-image: url('"+url+"?" + date.getTime() + "')");
             $('.userCardImg').height($('.userCardImg').width());
@@ -52,7 +52,7 @@ function fillInForm(preferences) {
             }
             else if(fieldId === "dob") {
                 var date = preferences[fieldId].substring(0, 10);
-                console.log(date);
+                // console.log(date);
                 field.val(date);
             }
             else
@@ -73,7 +73,7 @@ function storePreferences() {
     var bio=$("#bio").val();
 
     var atLeastOneIsChecked=$('input[class="activity"]:checked').length;
-    console.log(atLeastOneIsChecked);
+    // console.log(atLeastOneIsChecked);
 
     if (atLeastOneIsChecked === 0) {
         $("#errorMes").html("Please select at least one activity");
@@ -139,8 +139,9 @@ function deleteImage(fileName) {
                 profilePicURL = null;
                 fileName = null;
             }
-            else
+            else {
                 console.log("Unable to delete photo from AWS");
+            };
         });
     }
 }

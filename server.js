@@ -8,6 +8,7 @@ var session = require("express-session");
 var io = require("socket.io")(server);
 var passport = require("./config/passport");
 var db = require("./models");
+// var Upload = require('s3-uploader');
 
 var PORT = process.env.PORT || 8000;
 
@@ -27,8 +28,6 @@ require("./routes/apiRoutes.js")(app);
 require("./routes/chatApiRoutes.js")(app);
 require("./routes/awsRoutes.js")(app);
 require("./routes/htmlRoutes.js")(app);
-
-//changed force to false for testing
 
 db.sequelize.sync({ force: false }).then(function() {
   server.listen(PORT, function() {
